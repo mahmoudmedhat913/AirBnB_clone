@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
         elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         elif len(argl) == 1:
-            print"** instance id missing **")
+            print("** instance id missing **")
         elif "{}.{}".format(argl[0], argl[1]) not in objdict:
             print("** no instance found **")
         else:
