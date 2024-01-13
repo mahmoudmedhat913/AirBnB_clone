@@ -20,7 +20,7 @@ class FileStorage:
         """return dictionary __objects"""
         return FileStorage.__objects
 
-    def new(self):
+    def new(self, obj):
         """set in __objects"""
         ocname = obj.__class__.__name__
         FileStorage.__objects["{}.{}".format(ocname, obj.id)] = obj
