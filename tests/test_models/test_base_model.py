@@ -150,7 +150,7 @@ class TestBaseModel_to_dict(unittest.TestCase):
         bm = BaseModel()
         bm.name = "Holberton"
         bm.my_number = 98
-        self.assertEqual("name", bm.to_dict())
+        self.assertIn("name", bm.to_dict())
         self.assertIn("my_number", bm.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
