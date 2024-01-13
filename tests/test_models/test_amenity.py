@@ -173,7 +173,6 @@ class TestAmenity_to_dict(unittest.TestCase):
         am = Amenity()
         self.assertNotEqual(am.to_dict(), am.__dict__)
 
-
     def test_to_dict_with_arg(self):
         am = Amenity()
         with self.assertRaises(TypeError):
