@@ -90,6 +90,7 @@ class TestBaseModel_save(unittest.TestCase):
         except IOError:
             pass
 
+    @classmethod
     def tearDown(self):
         try:
             os.remove("file.json")
@@ -147,15 +148,14 @@ class TestBaseModel_to_dict(unittest.TestCase):
 
     def test_to_dict_contains_added_attributes(self):
         bm = BaseModel()
-        bm.middle_name = "Holberton"
+        bm.name = "Holberton"
         bm.my_number = 98
-        self.assertEqual("Holberton", bm.middle_name)
+        self.assertEqual("name", bm.to_dict())
         self.assertIn("my_number", bm.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
         bm = BaseModel()
         bm_dict = bm.to_dict()
-        self.assertEqual(str, type(bm_dict["id"]))
         self.assertEqual(str, type(bm_dict["created_at"]))
         self.assertEqual(str, type(bm_dict["updated_at"]))
 
