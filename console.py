@@ -2,7 +2,7 @@
 """contain class"""
 import cmd
 import re
-import models
+from models import storage
 from shlex import split
 from models.base_model import BaseModel
 from models.user import User
@@ -89,12 +89,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(eval(argl[0])().id)
-            models.storage.save()
+            storage.save()
 
     def do_show(self, arg):
         """display string representation of class"""
         argl = parse(arg)
-        objdict = models.storage.all()
+        objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
@@ -109,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """delete instance class"""
         argl = parse(arg)
-        objdict = models.storage.all()
+        objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.__classes:
@@ -120,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(argl[0], argl[1])]
-            models.storage.save()
+            storage.save()
 
     def do_all(self, arg):
         """display all instacnes of given class"""
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             objl = []
-            for obj in models.storage.all().values():
+            for obj in storage.all().values():
                 if len(argl) > 0 and argl[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(argl) == 0:
@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
         """retrieve the number of instances"""
         argl = parse(arg)
         count = 0
-        for obj in models.storage.all().values():
+        for obj in storage.all().values():
             if argl[0] == obj.__class__.__name__:
                 count += 1
         print(count)
@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """update class instance"""
         argl = parse(arg)
-        objdict = models.storage.all()
+        objdict = storage.all()
 
         if len(argl) == 0:
             print("** class name missing **")
@@ -188,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = valtype(v)
                 else:
                     obj.__dict__[k] = v
-        models.storage.save()
+        storage.save()
 
 
 if __name__ == "__main__":
