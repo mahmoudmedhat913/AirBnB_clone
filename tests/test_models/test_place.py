@@ -1,48 +1,48 @@
 #!/usr/bin/python3
-"""define tests for review"""
+"""define tests for place"""
 import os
 import models
 import unittest
 from datetime import datetime
 from time import sleep
-from models.review import Review
+from models.place import Place
 
 
-class TestReview_instantiation(unittest.TestCase):
-    """testing instantiation of review class"""
+class TestPlace_instantiation(unittest.TestCase):
+    """testing instantiation of place class"""
 
     def test_no_args_instantiates(self):
-        self.assertEqual(Review, type(Review()))
+        self.assertEqual(Place, type(Place()))
 
     def test_new_instance_stored_in_objects(self):
-        self.assertIn(Review(), models.storage.all().values())
+        self.assertIn(Place(), models.storage.all().values())
 
     def test_id_is_public_str(self):
-        self.assertEqual(str, type(Review().id))
+        self.assertEqual(str, type(Place().id))
 
     def test_created_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(Review().created_at))
+        self.assertEqual(datetime, type(Place().created_at))
 
     def test_updated_at_is_public_datetime(self):
-        self.assertEqual(datetime, type(Review().updated_at))
+        self.assertEqual(datetime, type(Place().updated_at))
 
-    def test_place_id_is_public_class_attribute(self):
-        rv = Review()
-        self.assertEqual(str, type(Review.place_id))
-        self.assertIn("place_id", dir(rv))
-        self.assertNotIn("place_id", rv.__dict__)
+    def test_city_id_is_public_class_attribute(self):
+        pl = Place()
+        self.assertEqual(str, type(Place.city_id))
+        self.assertIn("city_id", dir(pl))
+        self.assertNotIn("city_id", pl.__dict__)
 
     def test_user_id_is_public_class_attribute(self):
-        rv = Review()
-        self.assertEqual(str, type(Review.user_id))
-        self.assertIn("user_id", dir(rv))
-        self.assertNotIn("user_id", rv.__dict__)
+        pl = Place()
+        self.assertEqual(str, type(Place.user_id))
+        self.assertIn("user_id", dir(pl))
+        self.assertNotIn("user_id", pl.__dict__)
 
-    def test_text_is_public_class_attribute(self):
-        rv = Review()
-        self.assertEqual(str, type(Review.text))
-        self.assertIn("text", dir(rv))
-        self.assertNotIn("text", rv.__dict__)
+    def test_name_is_public_class_attribute(self):
+        pl = Place()
+        self.assertEqual(str, type(Place.name))
+        self.assertIn("name", dir(pl))
+        self.assertNotIn("name", pl.__dict__)
 
     def test_two_reviews_unique_ids(self):
         rv1 = Review()
