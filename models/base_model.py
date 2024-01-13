@@ -21,7 +21,7 @@ class BaseModel:
                 else:
                     self.__dict__[k] = v
         else:
-            models.storage.new(self)
+            """models.storage.new()"""
 
     def save(self):
         """update updated_at with the current date"""

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """define tests for amenity"""
 import os
+import json
 import models
 import unittest
 from datetime import datetime
